@@ -19,10 +19,10 @@ class VectPainter(private val plane: CartesianPlane) : Painter {
             )
             setRenderingHints(rh)
             with(plane) {
-                for (i in 0..vectors.size - 1) {
+                for (i in 1..vectors.size - 1) {
                     drawLine(
-                        xCrt2Scr(0.0),
-                        yCrt2Scr(0.0),
+                        xCrt2Scr(vectors.keys.elementAt(i-1)),
+                        yCrt2Scr(vectors.values.elementAt(i-1)),
                         xCrt2Scr(vectors.keys.elementAt(i)),
                         yCrt2Scr(vectors.values.elementAt(i))
                     )
