@@ -21,7 +21,7 @@ class PointPainter(private val plane: CartesianPlane) : Painter {
                 font = Font("Cambria", Font.BOLD, 14)
                 val m = fontMetrics
                 color = Color.BLACK
-
+                var str = ""
                 for (i in 0..points.size - 1) {
                     fillOval(
                         xCrt2Scr(points.keys.elementAt(i)) - 3,
@@ -29,9 +29,11 @@ class PointPainter(private val plane: CartesianPlane) : Painter {
                         6,
                         6
                     )
-
+                    str =
+                        "(" + points.keys.elementAt(i).toFloat().toString() + ";" + points.values.elementAt(i).toFloat()
+                            .toString() + ")"
                     drawString(
-                        "(" + points.keys.elementAt(i).toString() + ";" + points.values.elementAt(i).toString() + ")",
+                        str,
                         xCrt2Scr(points.keys.elementAt(i)) + 10,
                         yCrt2Scr(points.values.elementAt(i)) + 10
                     )
