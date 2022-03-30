@@ -5,7 +5,7 @@ import java.awt.*
 class PointPainter(private val plane: CartesianPlane) : Painter {
     var pointColor: Color = Color.BLACK
 
-    var points = mutableMapOf<Double,Double>()
+    var points = mutableMapOf<Double, Double>()
     override fun paint(g: Graphics) {
         with(g as Graphics2D) {
             color = pointColor
@@ -18,11 +18,23 @@ class PointPainter(private val plane: CartesianPlane) : Painter {
             )
             setRenderingHints(rh)
             with(plane) {
+                font = Font("Cambria", Font.BOLD, 14)
+                val m = fontMetrics
+                color = Color.BLACK
+
                 for (i in 0..points.size - 1) {
-                    fillOval(xCrt2Scr( points.keys.elementAt(i))-3,
-                        plane.yCrt2Scr(points.values.elementAt(i))-3,
+                    fillOval(
+                        xCrt2Scr(points.keys.elementAt(i)) - 3,
+                        plane.yCrt2Scr(points.values.elementAt(i)) - 3,
                         6,
-                        6)
+                        6
+                    )
+
+                    drawString(
+                        "(" + points.keys.elementAt(i).toString() + ";" + points.values.elementAt(i).toString() + ")",
+                        xCrt2Scr(points.keys.elementAt(i)) + 10,
+                        yCrt2Scr(points.values.elementAt(i)) + 10
+                    )
                 }
             }
         }

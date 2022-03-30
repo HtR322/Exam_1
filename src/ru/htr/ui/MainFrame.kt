@@ -32,7 +32,7 @@ class MainFrame : JFrame() {
         val pointPainter = PointPainter(plane)
         val vectPainter = VectPainter(plane)
 
-        val painters = mutableListOf(cartesianPainter, pointPainter, vectPainter)
+        val painters = mutableListOf(cartesianPainter, pointPainter)
 
         mainPanel = GraphicsPanel(painters).apply {
             background = Color.WHITE
