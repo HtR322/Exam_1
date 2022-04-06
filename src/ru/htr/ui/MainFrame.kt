@@ -3,7 +3,6 @@ package ru.htr.ui
 import ru.htr.ui.painting.CartesianPainter
 import ru.htr.ui.painting.CartesianPlane
 import ru.htr.ui.painting.PointPainter
-import ru.htr.ui.painting.VectPainter
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.event.ComponentAdapter
@@ -30,9 +29,8 @@ class MainFrame : JFrame() {
 
         val cartesianPainter = CartesianPainter(plane)
         val pointPainter = PointPainter(plane)
-        val vectPainter = VectPainter(plane)
 
-        val painters = mutableListOf(cartesianPainter, pointPainter, vectPainter)
+        val painters = mutableListOf(cartesianPainter, pointPainter)
 
         mainPanel = GraphicsPanel(painters).apply {
             background = Color.WHITE
@@ -50,8 +48,7 @@ class MainFrame : JFrame() {
             override fun mouseClicked(e: MouseEvent?) {
                 if (e?.point != null) {
                     if (e.button == 1) {
-                        pointPainter.points.put(plane.xScr2Crt(e.point.x), plane.yScr2Crt(e.point.y))
-                        vectPainter.vectors.put(plane.xScr2Crt(e.point.x), plane.yScr2Crt(e.point.y))
+                        pointPainter.points.put(plane.xScr2Crt(e.point.x), plane.yScr2Crt(e.point.y)*(-1))
                         mainPanel.repaint()
                     }
                     if (e.button == 3) {
@@ -68,7 +65,6 @@ class MainFrame : JFrame() {
                                         painters.remove(pointPainter)
                                     }
                                     pointPainter.points.remove(pointPainter.points.keys.elementAt(i))
-                                    vectPainter.vectors.remove(vectPainter.vectors.keys.elementAt(i))
                                     break
                                 }
                             }
