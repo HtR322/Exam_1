@@ -61,9 +61,6 @@ class MainFrame : JFrame() {
                                         e.point.y
                                     ) - 0.1 < pointPainter.points.values.elementAt(i))
                                 ) {
-                                    if (pointPainter.points.size == 1) {
-                                        painters.remove(pointPainter)
-                                    }
                                     pointPainter.points.remove(pointPainter.points.keys.elementAt(i))
                                     break
                                 }
